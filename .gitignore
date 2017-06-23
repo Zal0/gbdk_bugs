@@ -3,3 +3,4 @@
 *.map
 *.o
 *.sym
+obj/
