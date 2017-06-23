@@ -74,6 +74,7 @@ void main(void) {
 	
 	BGP_REG = OBP0_REG = OBP1_REG = 0xE4U;
 
+	SWITCH_ROM_MBC1(2);
 	INIT_CONSOLE(font, 1, 18);
 	
 	DISPLAY_ON;

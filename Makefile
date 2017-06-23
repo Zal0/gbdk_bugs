@@ -1,14 +1,21 @@
 GBDK_DIR = C:/gbdk_n/gbdk-n
+LCC = C:/gbdk/bin/lcc
 BIN = $(GBK_DIR)/bin
 OBJ = ./obj
 
+CFLAGS = -mgbz80 --no-std-crt0 -I $(GBDK_DIR)/include -I $(GBDK_DIR)/include/asm
+
+
+
+all: clean build
+
 build:
 	mkdir -p $(OBJ)
-	sdcc -mgbz80 --no-std-crt0 -I $(GBDK_DIR)/include -I $(GBDK_DIR)/include/asm -c gb_tests.c -o $(OBJ)/gb_tests.rel
-	sdcc -mgbz80 --no-std-crt0 -I $(GBDK_DIR)/include -I $(GBDK_DIR)/include/asm -c Print.c -o $(OBJ)/Print.rel
-	sdcc -mgbz80 --no-std-crt0 -I $(GBDK_DIR)/include -I $(GBDK_DIR)/include/asm -c font.c -o $(OBJ)/font.rel
-	sdcc -mgbz80 --no-std-crt0 --data-loc 0xc0a0 -L $(GBDK_DIR)/lib $(GBDK_DIR)/lib/crt0.rel gb.lib -o a.ihx $(OBJ)/gb_tests.rel $(OBJ)/Print.rel $(OBJ)/font.rel -o $(OBJ)/gb_tests.ihx
-	makebin -Z $(OBJ)/gb_tests.ihx gb_tests.gb
+	sdcc $(CFLAGS) -c gb_tests.c -o $(OBJ)/gb_tests.rel
+	sdcc $(CFLAGS) -c Print.c -o $(OBJ)/Print.rel
+	sdcc $(CFLAGS) -c --constseg CODE_2 font.c -o $(OBJ)/font.rel
+	$(LCC) -Wl-yt1 -Wl-yo4 -o gb_testsLCC.gb $(OBJ)/gb_tests.rel $(OBJ)/Print.rel $(OBJ)/font.rel
+
 
 clean:
 	rm -rf $(OBJ)
