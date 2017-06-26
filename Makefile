@@ -3,7 +3,7 @@ LCC = C:/gbdk/bin/lcc
 BIN = $(GBK_DIR)/bin
 OBJ = ./obj
 
-CFLAGS = -mgbz80 --no-std-crt0 -I $(GBDK_DIR)/include -I $(GBDK_DIR)/include/asm
+CFLAGS = -mgbz80 --no-std-crt0 --fsigned-char -I $(GBDK_DIR)/include -I $(GBDK_DIR)/include/asm
 
 
 
