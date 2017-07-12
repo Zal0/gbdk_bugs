@@ -1,3 +1,5 @@
+#pragma bank 2
+
 /*
 
  FONT.B3.C
